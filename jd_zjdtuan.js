@@ -91,7 +91,7 @@ function submitInviteId(userName) {
 
 function helpFriendTuan() {
   return new Promise(resolve => {
-    $.get({ url: `https://api.ninesix.cc/api/jd-zjd-tuan` }, async (err, resp, _data) => {
+    $.get({ url: `https://127.0.0.1/api/jd-zjd-tuan` }, async (err, resp, _data) => {
       try {
         const { code, data = {} } = JSON.parse(_data);
         $.log(`\n获取随机助力码${code}\n${$.showLog ? _data : ''}`);

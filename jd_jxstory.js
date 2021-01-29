@@ -153,7 +153,7 @@ function submitInviteId(userName) {
 
 function createAssistUser() {
   return new Promise(resolve => {
-    $.get({ url: 'https://api.ninesix.cc/api/jx-story' }, (err, resp, _data) => {
+    $.get({ url: 'https://127.0.0.1/api/jx-story' }, (err, resp, _data) => {
       try {
         const { data = {} } = JSON.parse(_data);
         $.log(`\n${data.value}\n${$.showLog ? _data : ''}`);
