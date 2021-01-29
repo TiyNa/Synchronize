@@ -63,3 +63,6 @@
 
 # 京喜金牌厂长
 10 7-23/4 * * * node /scripts/jd_story.js >> /scripts/logs/jd_story.log 2>&1
+
+# 5G狂城
+10 7-23/4 * * * node /scripts/jd_5g.js >> /scripts/logs/jd_5g.log 2>&1
