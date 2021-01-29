@@ -66,3 +66,6 @@
 
 # 5G狂城
 10 7-23/4 * * * node /scripts/jd_5g.js >> /scripts/logs/jd_5g.log 2>&1
+
+# 泡泡大战
+33 7 * * * node /scripts/jd_paopao.js >> /scripts/logs/jd_paopao.log 2>&1
