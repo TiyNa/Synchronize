@@ -59,7 +59,7 @@
 30 19 * * *  node /scripts/jd_zjd.js >> /scripts/logs/jd_zjb.log 2>&1
 
 # 京东赚京东开团
-10 7-23 * * * node /scripts/jd_zjd_tuan.js >> /scripts/logs/jd_zjb_tuan.log 2>&1
+10 7-23 * * * node /scripts/jd_zjdtuan.js >> /scripts/logs/jd_zjbtuan.log 2>&1
 
 # 京喜金牌厂长
 10 7-23/4 * * * node /scripts/jd_story.js >> /scripts/logs/jd_story.log 2>&1
