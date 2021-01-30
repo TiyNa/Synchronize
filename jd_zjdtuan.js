@@ -39,7 +39,8 @@ $.tuan = null;
       console.log(`\n开始【京东账号${i + 1}】${userName}`);
       await getUserTuanInfo();
       await submitInviteId(userName);
-      await helpFriendTuan();
+      await submitInviteId(userName);
+      await submitInviteId(userName);
     }
   }
 })()
