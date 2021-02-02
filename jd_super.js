@@ -88,6 +88,7 @@ async function jdFamily() {
   await getInfo()
   await getUserInfo()
   await getUserInfo(true)
+  await draw()
   await showMsg();
 }
 
@@ -102,7 +103,7 @@ function showMsg() {
 function getInfo() {
   return new Promise(resolve => {
     $.get({
-      url: 'https://anmp.jd.com/babelDiy/Zeus/aKNv7uyr9ebhQRvU1iRd54zvdsi/index.html',
+      url: 'https://anmp.jd.com/babelDiy/Zeus/4QrJN4pbU8979SGMrToVFFyPuNNH/index.html?lng=0.000000&lat=0.000000&sid=1112983194235fa86bdaf908e5d8ae7w&un_area=12_951_956_42293',
       headers: {
         Cookie: cookie
       }
@@ -184,6 +185,31 @@ function doTask(taskId) {
   })
 }
 
+function draw() {
+  let body = `active=opensvc_sns_act_1612262797359&level=2&type=2`
+  return new Promise(resolve => {
+    $.get(taskUrl('family_draw', body), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          data = JSON.parse(data.match(/query\((.*)\n/)[1])
+          if (data.ret === 0) {
+            message += '领奖成功\n'
+            console.log(`领奖成功`)
+          } else {
+            console.log(`领奖失败`)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
 function taskUrl(function_id, body = '') {
   body = `activeid=${$.info.activeId}&token=${$.info.actToken}&sceneval=2&shareid=&_=${new Date().getTime()}&callback=query&${body}`
   return {
