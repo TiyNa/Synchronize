@@ -1,6 +1,8 @@
 ## Synchronize
 
-In order for you to use the files in these warehouses safely, please observe the following rules.
+In order for you to use the files in these warehouses safely.
+
+please observe the following rules.
 
 🚫Fork 🚫Star 🚫Share
 
