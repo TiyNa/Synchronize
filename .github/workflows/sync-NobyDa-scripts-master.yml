@@ -1,0 +1,31 @@
+# File: .github/workflows/repo-sync.yml
+name: NobyDa-scripts-master
+on:
+  schedule:
+    - cron: '15 16 * * *' #执行时间
+  workflow_dispatch:
+  watch:
+    types: started
+  push:
+    branches: [ master ]
+  repository_dispatch:
+    types: sync-scripts
+jobs:
+  repo-sync:
+    env:
+      PAT: ${{ secrets.PAT }} #此处PAT需要申请
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: NobyDa-scripts-master #运行过程中的名称
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/NobyDa/Script.git" #克隆对方仓库的git地址
+          source_branch: "master" # 克隆对方仓库的分支
+          destination_branch: "NobyDa-scripts-master" #新建一个你自己的远程分支
+          github_token: ${{ secrets.PAT }}
