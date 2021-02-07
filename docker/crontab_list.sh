@@ -35,8 +35,6 @@
 # 京东赚京东开团
 10 7-23 1-31 1 * node /scripts/jd_zjdtuan.js >> /scripts/logs/jd_zjbtuan.log 2>&1
 
-# 京喜金牌厂长
-#10 7-23/4 * * * node /scripts/jd_jxstory.js >> /scripts/logs/jd_jxstory.log 2>&1
 
 # 5G狂城
 10 7-23/4 * * * node /scripts/jd_5g.js >> /scripts/logs/jd_5g.log 2>&1
