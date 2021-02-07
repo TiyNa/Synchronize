@@ -12,19 +12,6 @@
 
 
 
-# 超级直播间任务赢京豆
-40 21 * * * node /scripts/jd_super.js >> /scripts/logs/jd_super.log 2>&1
-
-# 海产新年抽奖
-10 7 * * * node /scripts/jd_sx.js >> /scripts/logs/jd_sx.log 2>&1
-
-# 京年团圆pick
-5 0 19,20 1 * node /scripts/jd_vote.js >> /scripts/logs/jd_vote.log 2>&1
-
-# 京东粉丝专享
-10 0 * * * node /scripts/jd_wechat_sign.js >> /scripts/logs/jd_wechat_sign.log 2>&1
-
-
 
 
 
