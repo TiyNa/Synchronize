@@ -36,6 +36,8 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.8 修复无人直播出现的错误
 2.8-2 修复红包雨结束报错
 2.8-3 增加通过验证码获取token功能，并且内置header，新人设置LIVE为888
+2.8-4 修复错误
+
 
 ⚠️一共1个位置 1个ck  👉 5条 Secrets 
 多账号换行
@@ -423,7 +425,7 @@ function getTOKEN(timeout = 0) {
                     "source": "VEISHOP_APP_IOS",
                     "User-Agent": "VeiShop, 1.4.4 (iOS, 14.2, zh_CN, Apple, iPhone, )",
                     "X-User-Agent": "VeiShop, 1.4.4 (iOS, 14.2, zh_CN, Apple, iPhone, )",
-                    "traceid": "300000000000000000001610000000000000000000000",
+                    "traceid": "300000000000000000000000000000000000000000000",
                     "Host": "veishop.iboxpay.com",
                     "Accept-Language": "zh-Hans-CN;q=1",
                     "Accept": "*/*"
