@@ -184,8 +184,11 @@ if (!COOKIE.flwurlVal) {
       }
     }
   }
-  Length = flwurlArr.length
+  if(flwurlArr==''){
+    Length =0
+      }else Length = flwurlArr.length
 }
+  
 
 function GetCookie() {
   //返利登录
@@ -246,7 +249,7 @@ nowTimes = new Date(
 //今天
 Y = nowTimes.getFullYear() + '-';
 M = (nowTimes.getMonth() + 1 < 10 ? '0' + (nowTimes.getMonth() + 1) : nowTimes.getMonth() + 1) + '-';
-D = nowTimes.getDate();
+D = (nowTimes.getDate() < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getDate());
 ddtime = Y + M + D;
 console.log(ddtime)
 //当前时间戳
