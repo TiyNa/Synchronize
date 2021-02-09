@@ -37,6 +37,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.8-2 修复红包雨结束报错
 2.8-3 增加通过验证码获取token功能，并且内置header，新人设置LIVE为888
 2.8-4 修复错误
+2.9 修复时间戳错误
 
 
 ⚠️一共1个位置 1个ck  👉 5条 Secrets 
@@ -232,7 +233,7 @@ nowTimes = new Date(
 //今天
 Y = nowTimes.getFullYear() + '-';
 M = (nowTimes.getMonth() + 1 < 10 ? '0' + (nowTimes.getMonth() + 1) : nowTimes.getMonth() + 1) + '-';
-D = (nowTimes.getDate() + 1 < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getMonth());
+D = (nowTimes.getDate() < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getDate());
 ddtime = Y + M + D;
 console.log(ddtime)
 //当前时间戳
