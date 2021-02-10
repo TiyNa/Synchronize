@@ -23,4 +23,4 @@
 5 0 10-15 2 *  node /scripts/jd_gjmh.js >> /scripts/logs/jd_gjmh.log 2>&1
 
 #直播红包雨
-0,50 0,9,11,13,15,17,19,20,21,23 8-18 2 *  node /scripts/jd_red_rain.js  >> /scripts/logs/jd_red_rain.log 2>&1
+0,50 0,9,11,13,15,17,19,20,21,23 8-18 2 *  node /scripts/jd_redrain.js  >> /scripts/logs/jd_redrain.log 2>&1
