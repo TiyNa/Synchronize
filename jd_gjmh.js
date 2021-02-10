@@ -74,27 +74,57 @@ async function international_mh() {
     if (!$.risk) {
         await getTaskList();
         await doTask();
-        await getHome(true,true);
+        await getHome(true, true);
         for (let i = 0; i < 3; i++) {
             await box();
             if ($.max) {
                 break;
             }
             await $.wait(1000)
+           
             await openBox();
         }
-    }else{
+        await getReward();
+    } else {
         return;
     }
-    $.msg($.name,`本次运行共获得${$.jingdouNums}京豆`)
+
+    $.msg($.name, `本次运行共获得${$.jingdouNums}京豆`)
 }
+function getReward() {
+    for (let vo of $.rewardBagList) {
+        if (vo.hasRightOpen === 1 && vo.isOpen === 0) {
+            return new Promise(resolve => {
+                $.get(taskUrl_2('receiveTaskRewardBag', `{"activityCode":"lucky-box-001","id":${vo.id}}`), (err, resp, data) => {
+                    try {
+                        if (err) {
+                            console.log(`${JSON.stringify(err)}`)
+                        } else {
+                            if (data) {
+                                data = JSON.parse(data);
+                                if (data.result.data.jingdouNums !== '') {
+                                    $.jingdouNums += parseInt(data.result.data.jingdouNums);
+                                }
+                            }
+                        }
+                    } catch (e) {
+                        $.logErr(e)
+                    } finally {
+                        resolve();
+                    }
+                })
+            })
+        }
+    }
+}
+
 function box() {
-    return new Promise( resolve => {
-        $.get(taskUrl_2('buyBox',`{"buyType":20,"activityCode":"lucky-box-001","boxId":7}`), async (err,resp,data)=>{
+    return new Promise(resolve => {
+        $.get(taskUrl_2('buyBox', `{"buyType":20,"activityCode":"lucky-box-001","boxId":7}`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
-                }else{
+                } else {
                     if (data) {
                         data = JSON.parse(data);
                         if (data.result.message === '今日购买已达上限') {
@@ -106,10 +136,10 @@ function box() {
                             await openBox();
                         }
                         if (data.result.code === "0") {
-                            await getHome(false,true);
+                            await getHome(false, true);
                         }
                     }
-                }     
+                }
             } catch (e) {
                 $.logErr(e)
             } finally {
@@ -119,17 +149,19 @@ function box() {
     })
 }
 function openBox() {
-    return new Promise( resolve => {
-        $.get(taskUrl_2('openLuckyBox',`{"activityCode":"lucky-box-001","orderNo":"${$.boxInfo.orderNo}","openRecId":${$.boxInfo.openRecId}}`),(err,resp,data)=>{
+    return new Promise(resolve => {
+        $.get(taskUrl_2('openLuckyBox', `{"activityCode":"lucky-box-001","orderNo":"${$.boxInfo.orderNo}","openRecId":${$.boxInfo.openRecId}}`), (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
-                }else{
+                } else {
                     if (data) {
                         data = JSON.parse(data);
-                        $.jingdouNums += parseInt(data.result.data.jingdouNums);
+                        if (data.result.data.jingdouNums !== '') {
+                            $.jingdouNums += parseInt(data.result.data.jingdouNums);
+                        }
                     }
-                }     
+                }
             } catch (e) {
                 $.logErr(e)
             } finally {
@@ -145,24 +177,24 @@ async function doTask() {
         for (let i = 0; i < times; i++) {
             let body = `{"taskId":${vo.taskId},"itemId":${vo.itemId},"viewSeconds":${vo.viewSeconds},"activityCode":"lucky-box-001"}`;
             console.log(`${vo.taskTypeName} - ${vo.taskName}`);
-            await $.wait(vo.viewSeconds*500)
+            await $.wait(vo.viewSeconds * 500)
             await taskRun(body);
             await $.wait(1000)
         }
     }
 }
 function taskRun(body,) {
-    return new Promise( resolve => {
-        $.get(taskUrl_2('taskRun',body), (err,resp,data)=>{
+    return new Promise(resolve => {
+        $.get(taskUrl_2('taskRun', body), (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
-                }else{
+                } else {
                     if (data) {
                         data = JSON.parse(data);
                         console.log(data.result.message);
                     }
-                }     
+                }
             } catch (e) {
                 $.logErr(e)
             } finally {
@@ -173,19 +205,19 @@ function taskRun(body,) {
 }
 function getTaskList() {
     let body = `{"activityCode":"lucky-box-001"}`;
-    return new Promise( resolve => {
-        $.get(taskUrl_2('myTask',body),(err,resp,data) => {
+    return new Promise(resolve => {
+        $.get(taskUrl_2('myTask', body), (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
-                }else{
+                } else {
                     if (data) {
                         data = JSON.parse(data);
                         if (data.result.hasOwnProperty('data')) {
                             $.taskList = data.result.data;
                         }
                     }
-                }     
+                }
             } catch (e) {
                 $.logErr(e)
             } finally {
@@ -194,36 +226,37 @@ function getTaskList() {
         })
     })
 }
-function getHome(info = false,boxInfo = false) {
+function getHome(info = false, boxInfo = false) {
     let body = `{"applicationId":"27260146","activityCode":"lucky-box-001","boxId":"1"}`;
-return new Promise( resolve => {
-    $.get(taskUrl_2('luckyBoxMainInfo',body),(err,resp,data) => {
-        try {
-            if (err) {
-                console.log(`${JSON.stringify(err)}`)
-            }else{
-                if (data) {
-                    data = JSON.parse(data);
-                    if (data.result.data.isRiskUser === 1) {
-                        $.risk = true;
-                        console.log('账户风控，无缘啦。');
-                        return;
-                    }
-                    if (info) {
-                        $.fragments = data.result.data.myLuckyBox.fragments;
-                    }
-                    if (boxInfo) {
-                        $.boxInfo = data.result.data.luckyBoxList[0];
+    return new Promise(resolve => {
+        $.get(taskUrl_2('luckyBoxMainInfo', body), (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                } else {
+                    if (data) {
+                        data = JSON.parse(data);
+                        if (data.result.data.isRiskUser === 1) {
+                            $.risk = true;
+                            console.log('账户风控，无缘啦。');
+                            return;
+                        }
+                        if (info) {
+                            $.fragments = data.result.data.myLuckyBox.fragments;
+                        }
+                        if (boxInfo) {
+                            $.boxInfo = data.result.data.luckyBoxList[0];
+                            $.rewardBagList = data.result.data.rewardBagList;
+                        }
                     }
                 }
+            } catch (e) {
+                $.logErr(e)
+            } finally {
+                resolve();
             }
-        } catch (e) {
-            $.logErr(e)
-        } finally {
-            resolve();
-        }
+        })
     })
-})
 }
 function help(params) {
     let opt = {
@@ -256,7 +289,7 @@ function help(params) {
         })
     })
 }
-function taskUrl_2(functionId,body) {
+function taskUrl_2(functionId, body) {
     return {
         url: `https://api.m.jd.com/client.action?functionId=${functionId}&appid=global_mart&body=${encodeURIComponent(body)}`,
         headers: {
@@ -267,6 +300,21 @@ function taskUrl_2(functionId,body) {
             'User-Agent': 'jdapp;iPhone;9.4.0;14.3;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;addressid/97911903;supportBestPay/0;appBuild/167541;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
             'Accept-Language': 'zh-cn',
             'Referer': 'https://gmart.jd.com/?appId=27260146',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Cookie': cookie,
+        }
+    }
+}
+function taskUrl_1(functionId, body) {
+    let opt = {
+        url: `https://api.m.jd.com/client.action?functionId=${functionId}&body=${encodeURIComponent(body)}&screen=750*1334&client=wh5&clientVersion=1.0.0&sid=&uuid=&area=&callback=bjsonp0`,
+        headers: {
+            'Host': 'api.m.jd.com',
+            'Origin': 'https://gmart.jd.com',
+            'Connection': 'keep-alive',
+            'Accept': 'application/json, text/plain, */*',
+            'User-Agent': 'jdapp;iPhone;9.4.0;14.3;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;addressid/97911903;supportBestPay/0;appBuild/167541;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
+            'Accept-Language': 'zh-cn',
             'Accept-Encoding': 'gzip, deflate, br',
             'Cookie': cookie,
         }

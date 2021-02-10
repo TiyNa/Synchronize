@@ -7,8 +7,8 @@ const body = $response.body;
     if (act) {
         let url = act.data.activityUrl
         $.activityId = url.substr(url.indexOf("id=") + 3)
-        $.st = act.startTime / 1000
-        $.ed = act.endTime / 1000
+        $.st = act.startTime
+        $.ed = act.endTime
         await updataBody({'actID':$.activityId,'st':$.st,'et':$.ed})
     } else {
         $.msg('这个直播间没有找到红包雨','请换个直播间尝试。')
