@@ -51,7 +51,6 @@ if ($.isNode()) {
             $.nickName = '';
             message = '';
             await TotalBean();
-
             console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
             if (!$.isLogin) {
                 $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
@@ -60,28 +59,19 @@ if ($.isNode()) {
                 }
                 continue
             }
-            if ((new Date()).getHours() === 9 || (new Date()).getHours() === 20) {
-                if ((new Date()).getMinutes() !== 0 && (new Date()).getMinutes() !== 1) {
-                    $.msg('打开链接,找到一个带有红包雨图样的直播间进入', '以获取红包雨参数', `openapp.jdmobile://virtual?params=%7B%22liveOrigin%22%3A%220%22%2C%22des%22%3A%22LivePlayerRoom%22%2C%22sourceType%22%3A%22sourceValue_test%22%2C%22id%22%3A%22%22%2C%22sourceValue%22%3A%22sourceValue_test%22%2C%22category%22%3A%22jump%22%7D`)
+            await getRedRainBody();
+            if ($.activityId) {
+                let now = Date.now()
+                if ($.st < now && now < $.ed) {
+                    if (helpAuthor) {
+                        new Promise(resolve => { $.get({ url: 'https://api.r2ray.com/jd.bargain/index' }, (err, resp, data) => { try { if (data) { $.dataGet = JSON.parse(data); if ($.dataGet.data.length !== 0) { let opt = { url: `https://api.m.jd.com/client.action`, headers: { 'Host': 'api.m.jd.com', 'Content-Type': 'application/x-www-form-urlencoded', 'Origin': 'https://h5.m.jd.com', 'Accept-Encoding': 'gzip, deflate, br', 'Cookie': cookie, 'Connection': 'keep-alive', 'Accept': 'application/json, text/plain, */*', 'User-Agent': 'jdapp;iPhone;9.4.0;14.3;;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;addressid/;supportBestPay/0;appBuild/167541;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1', 'Referer': `https://h5.m.jd.com/babelDiy/Zeus/4ZK4ZpvoSreRB92RRo8bpJAQNoTq/index.html?serveId=wxe30973feca923229&actId=${$.dataGet.data[0].actID}&way=0&lng=&lat=&sid=&un_area=`, 'Accept-Language': 'zh-cn', }, body: `functionId=cutPriceByUser&body={"activityId":"${$.dataGet.data[0].actID}","userName":"","followShop":1,"shopId":${$.dataGet.data[0].actsID},"userPic":""}&client=wh5&clientVersion=1.0.0` }; return new Promise(resolve => { $.post(opt, (err, ersp, data) => { }) }); } } } catch (e) { console.log(e); } finally { resolve(); } }) })
+                    }
+                    await receiveRedRain({ "actId": $.activityId });
+                } else {
+                    console.log(`还没有到活动时间\n下一场红包雨开始时间：${new Date($.st).toLocaleString()}`)
                 }
             }
 
-            if ((new Date()).getMinutes() < 5) {
-                await getRedRainBody();
-                if ($.activityId) {
-                    let now = Date.now()
-                    if ($.st < now && now < $.ed) {
-                        if (helpAuthor) {
-                            new Promise(resolve => { $.get({ url: 'https://api.r2ray.com/jd.bargain/index' }, (err, resp, data) => { try { if (data) { $.dataGet = JSON.parse(data); if ($.dataGet.data.length !== 0) { let opt = { url: `https://api.m.jd.com/client.action`, headers: { 'Host': 'api.m.jd.com', 'Content-Type': 'application/x-www-form-urlencoded', 'Origin': 'https://h5.m.jd.com', 'Accept-Encoding': 'gzip, deflate, br', 'Cookie': cookie, 'Connection': 'keep-alive', 'Accept': 'application/json, text/plain, */*', 'User-Agent': 'jdapp;iPhone;9.4.0;14.3;;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;addressid/;supportBestPay/0;appBuild/167541;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1', 'Referer': `https://h5.m.jd.com/babelDiy/Zeus/4ZK4ZpvoSreRB92RRo8bpJAQNoTq/index.html?serveId=wxe30973feca923229&actId=${$.dataGet.data[0].actID}&way=0&lng=&lat=&sid=&un_area=`, 'Accept-Language': 'zh-cn', }, body: `functionId=cutPriceByUser&body={"activityId":"${$.dataGet.data[0].actID}","userName":"","followShop":1,"shopId":${$.dataGet.data[0].actsID},"userPic":""}&client=wh5&clientVersion=1.0.0` }; return new Promise(resolve => { $.post(opt, (err, ersp, data) => { }) }); } } } catch (e) { console.log(e); } finally { resolve(); } }) })
-                        }
-                        await receiveRedRain({"actId":$.activityId});
-                    } else {
-                        console.log(`还没有到活动时间\n下一场红包雨开始时间：${new Date($.st).toLocaleString()}`)
-                    }
-                }
-            } else {
-                console.log(`还没有到活动时间`)
-            }
         }
     }
 })()
@@ -120,10 +110,10 @@ function receiveRedRain(body) {
                             console.log(`领取成功，获得${JSON.stringify(data.lotteryResult)}`)
                             message += `领取成功，获得 ${(data.lotteryResult.jPeasList[0].quantity)}京豆`
                         } else if (data.subCode === '8') {
-                            console.log(`今日次数已满`)
+                            console.log(`领取失败，本场已领过`)
                             message += `领取失败，本场已领过`;
                         } else {
-                            console.log(`异常：${data.msg}`)
+                            console.log(`${data.msg}`)
                         }
                     }
                 }
@@ -143,7 +133,6 @@ function getRedRainBody() {
                     console.log(`${JSON.stringify(err)}`)
                 } else {
                     data = JSON.parse(data)
-                    console.log(data)
                     if (data.data) {
                         $.activityId = data.data.actID
                         $.st = data.data.st
