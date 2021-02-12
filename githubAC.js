@@ -12,6 +12,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.7 增加时间控制，多js换行，boxjs手动保存会话，填写，再应用，其他填写环境变量或者githubACCOOKIE.js
 2.7-2 修正判定
 2.7-3 时间精确到5分
+1.12 修复
 
 ⚠️一共1个位置 3个ck  👉 18条 Secrets(14个时间变量) 
 多账号换行
@@ -515,8 +516,6 @@ if (COOKIE.githubACurlVal) {
 
         "HHAVal": COOKIE.HHAVal.split('\n'),
         "HHBVal": COOKIE.HHBVal.split('\n'),
-        "HHAVal": COOKIE.HHAVal.split('\n'),
-        "HHBVal": COOKIE.HHBVal.split('\n'),
         "HHCVal": COOKIE.HHCVal.split('\n'),
         "HHDVal": COOKIE.HHDVal.split('\n'),
         "HHEVal": COOKIE.HHEVal.split('\n'),
@@ -570,16 +569,7 @@ if (!COOKIE.githubACheaderVal) {
             }
         });
 
-        Object.keys(middleHHA).forEach((item) => {
-            if (middleHHA[item]) {
-                githubACArr.push(middleHHA[item]);
-            }
-        });
-        Object.keys(middleHHB).forEach((item) => {
-            if (middleHHB[item]) {
-                HHBArr.push(middleHHB[item]);
-            }
-        });
+
         Object.keys(middleHHA).forEach((item) => {
             if (middleHHA[item]) {
                 HHAArr.push(middleHHA[item]);
@@ -719,8 +709,6 @@ if (!COOKIE.githubACheaderVal) {
         githubACbodyArr.push($.getdata("githubACbody"));
         HHAArr.push($.getdata("HHA"));
         HHBArr.push($.getdata("HHB"));
-        HHAArr.push($.getdata("HHA"));
-        HHBArr.push($.getdata("HHB"));
         HHCArr.push($.getdata("HHC"));
         HHDArr.push($.getdata("HHD"));
         HHEArr.push($.getdata("HHE"));
@@ -752,8 +740,6 @@ if (!COOKIE.githubACheaderVal) {
                 githubACurlArr.push($.getdata(`githubACurl${i}`));
                 githubACheaderArr.push($.getdata(`githubACheader${i}`));
                 githubACbodyArr.push($.getdata(`githubACbody${i}`));
-                HHAArr.push($.getdata(`HHA${i}`));
-                HHBArr.push($.getdata(`HHB${i}`));
                 HHAArr.push($.getdata(`HHA${i}`));
                 HHBArr.push($.getdata(`HHB${i}`));
                 HHCArr.push($.getdata(`HHC${i}`));
@@ -943,8 +929,6 @@ async function all() {
             githubACbodyVal = GIT_COOKIES.githubACbodyVal[i];
             HHAVal = GIT_COOKIES.HHAVal[i];
             HHBVal = GIT_COOKIES.HHBVal[i];
-            HHAVal = GIT_COOKIES.HHAVal[i];
-            HHBVal = GIT_COOKIES.HHBVal[i];
             HHCVal = GIT_COOKIES.HHCVal[i];
             HHDVal = GIT_COOKIES.HHDVal[i];
             HHEVal = GIT_COOKIES.HHEVal[i];
@@ -980,9 +964,7 @@ async function all() {
             githubACurlVal = githubACurlArr[i];
             githubACheaderVal = githubACheaderArr[i];
             githubACbodyVal = githubACbodyArr[i];
-
-            HHAVal = HHAArr[i];
-            HHBVal = HHBArr[i];
+			
             HHAVal = HHAArr[i];
             HHBVal = HHBArr[i];
             HHCVal = HHCArr[i];
