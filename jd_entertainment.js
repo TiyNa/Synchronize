@@ -35,7 +35,7 @@ const questionList = [
   { q: '1b04f39bf2ee4953bc7aa7c2ba037b01', a: 'A:刘维' },
   { q: '1d777fac821e4614b51314d0b035660e', a: 'C:魏大勋' },
   { q: '4ddac4345a55479abb17f97476b84eb1', a: 'B:李斯丹妮' },
-  { q: '543885a6e9b845cc8d97e92fd19e17f3', a: 'A:谢娜' },
+  { q: '543885a6e9b845cc8d97e92fd19e17f3', a: 'B:瞿颖' },
   { q: '8068df6cd3fa41dd8565ac847d551981', a: 'A:戚薇' },
   { q: '8bcad350090c41adbe881c5ef3553a7f', a: 'A:王智' },
   { q: 'd81508f5253b481f962e48d754d33485', a: 'C:孟佳' },
