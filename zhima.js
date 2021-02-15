@@ -9,7 +9,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 
 2.13 制作
-2.15 修复
+2.15 修复刷新问题,修复部分问题
 
 ⚠️一共1个位置 1个ck  👉 1条 Secrets
 多账号换行
@@ -39,12 +39,12 @@ https:\/\/api\.sxsjyzm\.com\/* url script-request-body https://raw.githubusercon
 
 ############## loon
 #芝嫲视频获取body
-http-request https:\/\/github\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
+http-request https:\/\/api\.sxsjyzm\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
 
 ############## surge
 
 #芝嫲视频获取body
-芝嫲视频获取body = type=http-request,pattern=https:\/\/github\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js 
+芝嫲视频获取body = type=http-request,pattern=https:\/\/api\.sxsjyzm\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js 
 
 
 
@@ -246,11 +246,11 @@ async function all() {
     }
     for (let i = 0; i < Length; i++) {
 
-        if (COOKIE.zhimaheaderVal) {
-            zhimabodyVal = GIT_COOKIES.zhimabodyVal[i];
+        if (COOKIE.zhimabodyVal) {
+            zhimabodyVal = ZM_COOKIES.zhimabodyVal[i];
             
         }
-        if (!COOKIE.zhimaheaderVal) {
+        if (!COOKIE.zhimabodyVal) {
             zhimabodyVal = zhimabodyArr[i];
             
         }
@@ -262,7 +262,7 @@ async function all() {
 
 console.log(`\n${O}\n========== 【${O}】 ==========\n`);
                         $.message += `\n${O}\n========== 【${O}】 ==========\n`;
-            await zhimasx()
+           
             await zhima(); //运行
 
  
@@ -371,6 +371,7 @@ $.zhima= JSON.parse(data);
                         console.log(`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n\n`)
                         $.message +=`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n\n`
 
+await zhimasx()
 await $.wait(11000)
 await zhima()
 
