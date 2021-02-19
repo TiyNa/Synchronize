@@ -26,3 +26,6 @@
 
 #京东小魔方
 10 20 10-13 2 *  node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.js 2>&1
+
+#沃尔玛粉丝活动
+3 10 17-28 2 *  node /scripts/jd_walmart.js >> /scripts/logs/jd_walmart.js 2>&1
