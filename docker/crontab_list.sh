@@ -1,11 +1,4 @@
 
-# 半点红包雨
-30,31 12-23/1 * * * node /scripts/jd_live_redrain_half.js >> /scripts/logs/jd_live_redrain_half.log 2>&1
-
-# 官方号直播红包雨
-0 0,9,11,13,15,17,19,20,21,22,23 * * * node /scripts/jd_live_redrain_offical.js >> /scripts/logs/jd_live_redrain_offical.log 2>&1
-
-
 
 
 # 赚京豆-微信步数挑战
@@ -16,7 +9,6 @@
 
 # 泡泡大战
 33 7 * * * node /scripts/jd_paopao.js >> /scripts/logs/jd_paopao.log 2>&1
-
 
 
 
