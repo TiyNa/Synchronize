@@ -23,8 +23,6 @@
 #直播红包雨
 0,50 0,9,11,13,15,17,19,20,21,23 8-18 2 *  node /scripts/jd_redrain.js  >> /scripts/logs/jd_redrain.log 2>&1
 
-#百变大咖秀
-0 10,11 * * 2-5 node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1
 
 #京东小魔方
 10 20 10-13 2 *  node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.js 2>&1
