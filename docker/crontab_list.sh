@@ -20,10 +20,6 @@
 
 
 
-#直播红包雨
-0,50 0,9,11,13,15,17,19,20,21,23 8-18 2 *  node /scripts/jd_redrain.js  >> /scripts/logs/jd_redrain.log 2>&1
-
-
 
 #沃尔玛粉丝活动
 3 10 17-28 2 *  node /scripts/jd_walmart.js >> /scripts/logs/jd_walmart.js 2>&1
