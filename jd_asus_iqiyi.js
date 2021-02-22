@@ -100,6 +100,8 @@ async function doJob() {
     for (let i = 0; i < doList.length; i++) {
       console.log(`浏览 - ${doList[i].skuName}`);
       await doTask('toBrowse', `skuId=${doList[i].skuId}`);
+      await $.wait(3500);
+      await doTask('getBrowsePrize',`skuId=${doList[i].skuId}`);
       await $.wait(2000);
     }
   }
