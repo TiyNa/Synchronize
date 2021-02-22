@@ -18,3 +18,5 @@
 3 10 * * *  node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.js 2>&1
 #美丽美容院
 0 0,9,13,20 * * *  node /scripts/jd_mlyjy.js >> /scripts/logs/jd_mlyjy.js 2>&1
+#百变大咖秀
+10 10,11 * * 2-5  node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.js 2>&1
