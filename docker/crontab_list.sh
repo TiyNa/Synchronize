@@ -25,4 +25,4 @@
 #宠汪汪积分兑换奖品
 0 0,8,12,16 * * *  node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
 #母婴-跳一跳
-5 12 22-27 2 *  node /scripts/jd_jumpjump.js >> /scripts/logs/jd_jumpjump.log 2>&1
+5 8,10,12,18,22 22-27 2 *  node /scripts/jd_jumpjump.js >> /scripts/logs/jd_jumpjump.log 2>&1
