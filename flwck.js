@@ -1,9 +1,9 @@
 /* ziye  导出返利网ck专用    务必下载或者复制到本地使用
 
-github地址 https://github.com/ziye12
+github地址 https://github.com/ziye66666
 TG频道地址  https://t.me/ziyescript
 TG交流群   https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
-boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.boxjs.json
+boxjs链接  https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/ziye.boxjs.json
 
 
 转载请备注个名字，谢谢
@@ -19,7 +19,7 @@ const flwurl = 1
 const flwheader = 1
 const flwspbody = 1
 const flwqwbody = 1
-
+const flwydbody = 1
 
 
 const GG=''//默认为换行，也可以将需要隔开的符号填写在''内
@@ -48,11 +48,14 @@ let flwspbodyVal = "";
 const flwqwbodyArr = [];
 let flwqwbodyVal = "";
 
+const flwydbodyArr = [];
+let flwydbodyVal = "";
 
   flwurlArr.push($.getdata("flwurl"));  
   flwheaderArr.push($.getdata("flwheader")); 
   flwspbodyArr.push($.getdata("flwspbody")); 
-  flwqwbodyArr.push($.getdata("flwqwbody"));   
+  flwqwbodyArr.push($.getdata("flwqwbody"));  
+  flwydbodyArr.push($.getdata("flwydbody"));   
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   let flwCount = ($.getval('flwCount') || '1') - 0;
   for (let i = 2; i <= flwCount; i++) {
@@ -61,7 +64,7 @@ let flwqwbodyVal = "";
   flwheaderArr.push($.getdata(`flwheader${i}`));  
   flwspbodyArr.push($.getdata(`flwspbody${i}`));  
   flwqwbodyArr.push($.getdata(`flwqwbody${i}`));  
-
+  flwydbodyArr.push($.getdata(`flwydbody${i}`)); 
   
     }
   }
@@ -105,14 +108,14 @@ if (Z==R)
   flwheaderVal = flwheaderArr[K-1];  
   flwspbodyVal = flwspbodyArr[K-1];  
   flwqwbodyVal = flwqwbodyArr[K-1];  
-
+  flwydbodyVal = flwydbodyArr[K-1];  
 
   
 if(flwurl==1)console.log(flwurlVal+GG)
 if(flwheader==1)console.log(flwheaderVal+GG)
 if(flwspbody==1)console.log(flwspbodyVal+GG)
 if(flwqwbody==1)console.log(flwqwbodyVal+GG)
-
+if(flwydbody==1)console.log(flwydbodyVal+GG)
 
 
   for (let i = 0; i < 1; i++) {
