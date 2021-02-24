@@ -26,3 +26,5 @@
 0 0,8,12,16 * * *  node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
 #母婴-跳一跳
 5 8,10,12,18,22 22-27 2 *  node /scripts/jd_jumpjump.js >> /scripts/logs/jd_jumpjump.log 2>&1
+#国际盲盒
+10 13 23-28,1 2-3 *  node /scripts/jd_gjmh.js >> /scripts/logs/jd_gjmh.log 2>&1
