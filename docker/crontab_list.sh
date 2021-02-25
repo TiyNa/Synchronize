@@ -33,3 +33,15 @@
 0 6-23 * * *  node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
 #京喜财富岛兑换提醒
 0 6,12,22 * * *  node /scripts/jx_cfd_exchange.js >> /scripts/logs/jx_cfd_exchange.log 2>&1
+
+#京喜财富岛提现
+0 0,6,12,22 * * *  node /scripts/jx_cfdtx.js >> /scripts/logs/jx_cfdtx.log 2>&1
+
+#京喜工厂商品列表详情
+10 10 * * *  node /scripts/jx_products_detail.js >> /scripts/logs/jx_products_detail.log 2>&1
+
+# 京喜工厂助力+自动开团参团
+0/30 6-23 * * *  node /scripts/jx_factory.js >> /scripts/logs/jx_factory.log 2>&1
+
+# 京喜工厂plus
+0 1,18 * * *  node /scripts/jx_factory_component.js >> /scripts/logs/jx_factory_component.log 2>&1
