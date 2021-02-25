@@ -4,11 +4,12 @@
 
 let zhimabodyVal= ``
 
+let zhimatxbodyVal= ``
 
 let zhimacookie = {
 
   zhimabodyVal: zhimabodyVal,  
-  
+  zhimatxbodyVal: zhimatxbodyVal,  
 }
 
 module.exports =  zhimacookie
