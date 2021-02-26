@@ -18,14 +18,14 @@
 ============Quantumultx===============
 [task_local]
 #国际盲盒
-10 13 23-28,1 2-3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js, tag=国际盲盒, enabled=true
+10 13 * 2-3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js, tag=国际盲盒, enabled=true
 ================Loon==============
 [Script]
-cron "10 13 23-28,1 2-3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js, tag=国际盲盒
+cron "10 13 * 2-3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js, tag=国际盲盒
 ===============Surge=================
-国际盲盒 = type=cron,cronexp="10 13 23-28,1 2-3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js
+国际盲盒 = type=cron,cronexp="10 13 * 2-3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js
 ============小火箭=========
-国际盲盒 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js, cronexpr="10 13 23-28,1 2-3 *", timeout=3600, enable=true
+国际盲盒 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_gjmh.js, cronexpr="10 13 * 2-3 *", timeout=3600, enable=true
  */
 const $ = new Env('国际盲盒');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
