@@ -106,7 +106,7 @@ if (!TTreferArr[0] && !TTbodyArr[0] ) {
     
 function GetCookie() {
 if($request&&$request.url.indexOf("checkin")>=0) {
-   const TTrefer = $request.headers['Refer']
+   const TTrefer = $request.headers['Referer']
    if(TTrefer)     $.setdata(TTrefer,`TTrefer${status}`)
    $.log(`[${zhiyi}] 获取TTrefer请求: 成功,TTrefer: ${TTrefer}`)
    $.msg(`TTrefer${status}: 成功🎉`, ``)
@@ -142,8 +142,8 @@ async function checkin(){
          for(let i = 0; i < 29; i++){
          let day = result.data.record.i == 0 ? (i -1) : i
          }
-	  console.log(`第${day}天打卡成功：获得${result.data.curMoney}元\n`)
-          message += `第${day}天打卡成功：获得${result.data.curMoney}元`
+	  console.log(`打卡成功：获得${result.data.curMoney}元\n`)
+          message += `打卡成功：获得${result.data.curMoney}元`
         }else if(result.code == 2){
         console.log(result.msg+`\n`)
         message += result.msg
