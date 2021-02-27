@@ -28,6 +28,8 @@
 5 8,10,12,18,22 22-27 2 *  node /scripts/jd_jumpjump.js >> /scripts/logs/jd_jumpjump.log 2>&1
 #国际盲盒
 10 13 23-28,1 2-3 *  node /scripts/jd_gjmh.js >> /scripts/logs/jd_gjmh.log 2>&1
+#摇一摇
+3 20 * * *  node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
 
 #京喜财富岛
 0 6-23 * * *  node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
