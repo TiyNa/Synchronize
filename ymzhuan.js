@@ -14,6 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zi
 
 2.26 制作
 2.27 完成
+2.28 调整运行时长
 
 ⚠️ 时间设置    0 8,12 * * *    每天1次以上就行   
 
@@ -469,7 +470,7 @@ uid = decodeUnicode(ymzhuanggbodyVal.split('uid=')[1].split('&')[0])
 
         if (gg.status == 0) {
             await ggrw() //广告任务
-          await $.wait(4 * 3000)
+          await $.wait(4 * 33000)
 
         }
 
@@ -478,7 +479,7 @@ uid = decodeUnicode(ymzhuanggbodyVal.split('uid=')[1].split('&')[0])
 
         if (sp.status == 0) {
             await sprw() //视频任务
-await $.wait(5 * 3000)
+await $.wait(5 * 33000)
 
         }
         await signinfo() //签到
@@ -610,7 +611,7 @@ function ggrw(timeout = 0) {
                                 resolve()
                             }
                         })
-                    }, i * 3000);
+                    }, i * 33000);
                 }
             },
             timeout)
@@ -643,7 +644,7 @@ function sprw(timeout = 0) {
                                 resolve()
                             }
                         })
-                    }, i * 3000);
+                    }, i * 33000);
                 }
             },
             timeout)
