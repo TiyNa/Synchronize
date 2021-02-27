@@ -117,9 +117,9 @@ if ($.isNode() && process.env.YMZ_ymzhuanggBODY) {
         process.env.YMZ_ymzhuantxBODY &&
         process.env.YMZ_ymzhuantxBODY.indexOf(COOKIES_SPLIT) > -1
     ) {
-        middleymzhuantxBODY = process.env.YMZ_ymzhuantxBODY.txlit(COOKIES_SPLIT);
+        middleymzhuantxBODY = process.env.YMZ_ymzhuantxBODY.split(COOKIES_SPLIT);
     } else {
-        middleymzhuantxBODY = process.env.YMZ_ymzhuantxBODY.txlit();
+        middleymzhuantxBODY = process.env.YMZ_ymzhuantxBODY.split();
     }
 }
 
