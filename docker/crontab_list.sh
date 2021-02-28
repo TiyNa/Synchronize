@@ -31,8 +31,7 @@
 #摇一摇
 3 20 * * *  node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
 
-#京喜财富岛
-0 6-23 * * *  node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
+
 #京喜财富岛兑换提醒
 0 6,12,22 * * *  node /scripts/jx_cfd_exchange.js >> /scripts/logs/jx_cfd_exchange.log 2>&1
 
