@@ -20,8 +20,6 @@
 0 0,9,13,20 * * *  node /scripts/jd_mlyjy.js >> /scripts/logs/jd_mlyjy.log 2>&1
 #百变大咖秀
 10 10,11 * * 2-5  node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1
-#华硕-iqiyi
-0 0 22-28 2 *  node /scripts/jd_asus_iqiyi.js >> /scripts/logs/jd_asus_iqiyi.log 2>&1
 #宠汪汪积分兑换奖品
 0 0,8,12,16 * * *  node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
 #母婴-跳一跳
