@@ -781,11 +781,11 @@ function signget(timeout = 0) {
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 每日签到🚩: ${data}`);
-                    $.sign = JSON.parse(data);
-                    if ($.sign.code == 200) {
+                    $.signget = JSON.parse(data);
+                    if ($.signget.code == 200) {
 
-                        console.log(`每日签到：领取${$.sign.jinbi}金币\n`);
-                        $.message += `【每日签到】：领取${$.sign.jinbi}金币\n`;
+                        console.log(`每日签到：领取${$.signget.jinbi}金币\n`);
+                        $.message += `【每日签到】：领取${$.signget.jinbi}金币\n`;
                     }
                 } catch (e) {
                     $.logErr(e, resp);
@@ -1633,11 +1633,11 @@ function news_info(timeout = 0) {
                     if ($.news_info.code == 200) {
                         console.log(`资讯赚页：今日获得${$.news_info.jinbi}金币\n`);
                         $.message += `【资讯赚页】：今日获得${$.news_info.jinbi}金币\n`;
-                        if ($.news_info.is_max == 0) {
+                        if ($.news_info.jinbi < 1000) {
                             nonce_str = $.news_info.nonce_str
                             await news_done() //资讯赚
                         }
-                        if ($.news_info.jinbi == 1000) {
+                        if ($.news_info.jinbi >= 1000) {
                             console.log(`资讯赚：完成\n`);
                             $.message += `【资讯赚】：完成\n`;
                         }
