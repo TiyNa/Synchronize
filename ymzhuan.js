@@ -17,6 +17,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 2.28 调整运行时长
 3.1 修复提现问题
 3.3 修复模拟登录 
+3.4 修复提现，绑定时也可获取ck
 
 ⚠️ 时间设置    0 8,12 * * *    每天1次以上就行   
 
@@ -78,7 +79,7 @@ let ymzhuantxbodyVal = ``;
 let middleymzhuantxBODY = [];
 if ($.isNode()) {
     // 没有设置 YMZ_CASH 则默认为 0 不兑换
-    CASH = process.env.YMZ_CASH || 0;
+    CASH = process.env.YMZ_CASH || 888;
 }
 if ($.isNode() && process.env.YMZ_ymzhuanggBODY) {
     COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
@@ -158,6 +159,7 @@ if (!COOKIE.ymzhuanggbodyVal) {
         Length = 0
     } else Length = ymzhuanggbodyArr.length
 }
+
 function GetCookie() {
     if ($response && $request.url.indexOf("verifyidentity") >= 0) {
         let BODY = {
@@ -172,59 +174,60 @@ function GetCookie() {
             body: JSON.stringify(BODY)
         });
     }
- if ($response && $request.url.indexOf("login") >= 0) {
+    if ($response && $request.url.indexOf("login") >= 0) {
         USERID = Number($.getval("ymzhuanUSERID"));
-if (typeof USERID === 'undefined' || USERID == 0) { $.log(
-            `[${$.name + $.idx}] 未设置USERID`
-        );
-        $.msg($.name + $.idx, `未设置USERID`, ``);
-  $.done({
-            body: body
-        });
-    }else { 
-  
-   
-   
-    let BODY = { 
-   "timestamp": `${ddtime}`, 
-   "result": { 
-   "id": 0, 
-   "invitecode": "", 
-   "status": 1, 
-   "pid": 0, 
-   "pinvitecode": "", 
-   "cellphone": "", 
-   "alipayaccount": "", 
-   "alipayname": "", 
-   "bannertime": 180, 
-   "bannerclkratio": "0##8", 
-   "cpvideo": 5, 
-   "cpratio": 10, 
-   "appinstallratio": "75##0##25", 
-   "appsigntime": 60, 
-   "leastbanner": 2, 
-   "qqgroup": "935826100", 
-   "shareurl": "", 
-   "appurl1": "", 
-   "appurl2": "", 
-   "nickname": "", 
-   "icon": "" 
-   }, 
-   "msg": "ok", 
-   "statuscode": 200 
-   } 
-        BODY.result.id = USERID
-        BODY.result.invitecode = `${USERID + 10000000}`
-        $.log(
-            `[${$.name + $.idx}] 模拟登陆✅: 成功,USERID: ${USERID}`
-        );
-        $.msg($.name + $.idx, `模拟登陆: 成功,USERID: ${USERID}🎉`, ``);
- $.done({
-            body: JSON.stringify(BODY)
-        });
-   }
+        if (typeof USERID === 'undefined' || USERID == 0) {
+            $.log(
+                `[${$.name + $.idx}] 未设置USERID`
+            );
+            $.msg($.name + $.idx, `未设置USERID`, ``);
+            $.done({
+                body: body
+            });
+        } else {
+
+
+
+            let BODY = {
+                "timestamp": `${ddtime}`,
+                "result": {
+                    "id": 0,
+                    "invitecode": "",
+                    "status": 1,
+                    "pid": 0,
+                    "pinvitecode": "",
+                    "cellphone": "",
+                    "alipayaccount": "",
+                    "alipayname": "",
+                    "bannertime": 180,
+                    "bannerclkratio": "0##8",
+                    "cpvideo": 5,
+                    "cpratio": 10,
+                    "appinstallratio": "75##0##25",
+                    "appsigntime": 60,
+                    "leastbanner": 2,
+                    "qqgroup": "935826100",
+                    "shareurl": "",
+                    "appurl1": "",
+                    "appurl2": "",
+                    "nickname": "",
+                    "icon": ""
+                },
+                "msg": "ok",
+                "statuscode": 200
+            }
+            BODY.result.id = USERID
+            BODY.result.invitecode = `${USERID + 10000000}`
+            $.log(
+                `[${$.name + $.idx}] 模拟登陆✅: 成功,USERID: ${USERID}`
+            );
+            $.msg($.name + $.idx, `模拟登陆: 成功,USERID: ${USERID}🎉`, ``);
+            $.done({
+                body: JSON.stringify(BODY)
+            });
+        }
     }
-    if ($request && $request.body.indexOf("taskid=1") >= 0&& $request.body.indexOf("sign=") >= 0) {
+    if ($request && $request.body.indexOf("taskid=1") >= 0 && $request.body.indexOf("sign=") >= 0) {
         const ymzhuanggbodyVal = $request.body;
         if (ymzhuanggbodyVal) $.setdata(ymzhuanggbodyVal, "ymzhuanggbody" + $.idx);
         $.log(
@@ -232,7 +235,7 @@ if (typeof USERID === 'undefined' || USERID == 0) { $.log(
         );
         $.msg($.name + $.idx, `获取ymzhuanggbodyVal: 成功🎉`, ``);
     }
-    if ($request && $request.body.indexOf("taskid=2") >= 0&& $request.body.indexOf("sign=") >= 0) {
+    if ($request && $request.body.indexOf("taskid=2") >= 0 && $request.body.indexOf("sign=") >= 0) {
         const ymzhuanspbodyVal = $request.body;
         if (ymzhuanspbodyVal) $.setdata(ymzhuanspbodyVal, "ymzhuanspbody" + $.idx);
         $.log(
@@ -240,7 +243,7 @@ if (typeof USERID === 'undefined' || USERID == 0) { $.log(
         );
         $.msg($.name + $.idx, `获取ymzhuanspbodyVal: 成功🎉`, ``);
     }
-    if ($request && $request.body.indexOf("cellphone") < 0&& $request.body.indexOf("account") >= 0 && $request.body.indexOf("money") >= 0) {
+    if ($request && $request.body.indexOf("account") >= 0 && $request.body.indexOf("money") >= 0) {
         const ymzhuantxbodyVal = $request.body;
         if (ymzhuantxbodyVal) $.setdata(ymzhuantxbodyVal, "ymzhuantxbody" + $.idx);
         $.log(
@@ -403,7 +406,7 @@ async function all() {
             "Host": "ymz.iphonezhuan.com",
             "User-Agent": "%E7%BE%8A%E6%AF%9B%E8%8B%B1%E6%B1%89%E8%AF%8D%E5%85%B8/1.03 CFNetwork/1206 Darwin/20.1.0",
         }
-uid = decodeUnicode(ymzhuanggbodyVal.split('uid=')[1].split('&')[0])
+        uid = decodeUnicode(ymzhuanggbodyVal.split('uid=')[1].split('&')[0])
         O = (`${$.name + (i + 1)}🔔`);
         await user(); //用户名
         await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
@@ -413,11 +416,11 @@ uid = decodeUnicode(ymzhuanggbodyVal.split('uid=')[1].split('&')[0])
         }
         if (gg.status == 0) {
             await ggrw() //广告任务
-          await $.wait(4 * 33000)
+            await $.wait(4 * 33000)
         }
         if (sp.status == 0) {
             await sprw() //视频任务
-await $.wait(5 * 33000)
+            await $.wait(5 * 33000)
         }
         await signinfo() //签到
         if (CASH > 0 && nowTimes.getHours() >= 8 && nowTimes.getHours() < 20) {
@@ -573,7 +576,7 @@ function sign(timeout = 0) {
             let url = {
                 url: `http://ymz.iphonezhuan.com/submitsign?`,
                 headers: header,
-            body: `channelID=2&uid=${uid}&ver=102`,
+                body: `channelID=2&uid=${uid}&ver=102`,
             }
             $.post(url, async (err, resp, data) => {
                 try {
@@ -627,10 +630,19 @@ function signinfo(timeout = 0) {
 //现金提现
 function tixian(timeout = 0) {
     return new Promise((resolve) => {
-money = ymzhuantxbodyVal.split('money=')[1].split('&')[0]
-timestamp = ymzhuantxbodyVal.split('timestamp=')[1].split('&')[0]
-        setTimeout(() => {
+        money = ymzhuantxbodyVal.split('money=')[1].split('&')[0]
+        timestamp = ymzhuantxbodyVal.split('timestamp=')[1].split('&')[0]
+
+        if (ymzhuantxbodyVal.indexOf("cellphone") >= 0 && ymzhuantxbodyVal.indexOf("code") >= 0) {
+            cellphone = ymzhuantxbodyVal.split('cellphone=')[1].split('&')[0]
+            code = ymzhuantxbodyVal.split('code=')[1].split('&')[0]
+            ymzhuantxbody = ymzhuantxbodyVal.replace(`cellphone=${cellphone}&`, ``).replace(`code=${code}&`, ``).replace(`money=${money}`, `money=${CASH}`).replace(`timestamp=${timestamp}`, `timestamp=${tts()}`)
+        } else {
             ymzhuantxbody = ymzhuantxbodyVal.replace(`money=${money}`, `money=${CASH}`).replace(`timestamp=${timestamp}`, `timestamp=${tts()}`)
+        }
+
+        setTimeout(() => {
+
             let url = {
                 url: `http://ymz.iphonezhuan.com/submitwithdraw`,
                 headers: header,
@@ -640,10 +652,8 @@ timestamp = ymzhuantxbodyVal.split('timestamp=')[1].split('&')[0]
                 try {
                     if (logs) $.log(`${O}, 现金提现🚩: ${data}`);
                     $.tixian = JSON.parse(data);
-                    if ($.tixian.statuscode == 200) {
                         console.log(`现金提现：${$.tixian.msg}\n`);
-                        $.message += `【现金提现】：${$.tixian.msg}\n`;
-                    }
+                        $.message += `【现金提现】：${$.tixian.msg}\n`;                  
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
