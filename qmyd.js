@@ -1843,11 +1843,11 @@ function tixian_html(timeout = 0) {
                                 await tixian() //提现
                             }
                             if (CASH == 888) {
-                                if ($.user.money >= 300) {
+                                 if ($.user.money >= 300&&fenshu8>=1) {
                                     CASH = 300
-                                } else if ($.user.money >= 200) {
+                                } else if ($.user.money >= 200&&fenshu7>=1) {
                                     CASH = 200
-                                } else if ($.user.money >= 100) {
+                                } else if ($.user.money >= 100&&fenshu6>=1) {
                                     CASH = 100
                                 } else if ($.user.money > 30 && $.tixian_html.tixian_coupon >= 25) {
                                     CASH = 30
