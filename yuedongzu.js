@@ -1151,8 +1151,7 @@ function gualist(timeout = 0) {
                         console.log(`刮刮卡列表：剩余${$.gualist.data.ka}张，下一张${idlist.jine}元\n`);
                         $.message += `【刮刮卡列表】：剩余${$.gualist.data.ka}张，下一张${idlist.jine}元\n`;
                         await guadet() //刮卡
-                    }
-                    if ($.gualist.data.ka && $.gualist.data.ka == 0) {
+                    } else {
                         console.log(`刮刮卡列表：剩余${$.gualist.data.ka}张，已完成\n`);
                         $.message += `【刮刮卡列表】：剩余${$.gualist.data.ka}张，已完成\n`;
                     }
@@ -1194,7 +1193,20 @@ function guadet(timeout = 0) {
                         if (guacs) {
                             console.log(`【刮刮卡查询】：开启${$.guadet.jine}元,抽中${guacs}等奖\n`)
                             $.message += `【刮刮卡查询】：开启${$.guadet.jine}元,抽中${guacs}等奖\n`;
-                            if (guacs <= 2) {
+
+                            if (guacs <= 2 && nowTimes.getHours() >= 0 && nowTimes.getHours() <= 17) {
+                                console.log(`【刮刮卡领取】：成功领奖\n`)
+                                $.message += `【刮刮卡领取】：成功领奖\n`;
+                                sign = $.guadet.sign
+                                glid = $.guadet.glid
+                                await guapost() //刮卡奖励
+                            } else if (guacs <= 3 && nowTimes.getHours() >= 18 && nowTimes.getHours() <= 22) {
+                                console.log(`【刮刮卡领取】：成功领奖\n`)
+                                $.message += `【刮刮卡领取】：成功领奖\n`;
+                                sign = $.guadet.sign
+                                glid = $.guadet.glid
+                                await guapost() //刮卡奖励
+                            } else if (guacs <= 4 && nowTimes.getHours() == 23) {
                                 console.log(`【刮刮卡领取】：成功领奖\n`)
                                 $.message += `【刮刮卡领取】：成功领奖\n`;
                                 sign = $.guadet.sign
@@ -1206,7 +1218,6 @@ function guadet(timeout = 0) {
                             }
                         }
                     }
-
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
