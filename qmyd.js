@@ -11,6 +11,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 
 3.3 制作
 3.4 优化提现，优化刮刮卡，优化抽手机
+3.5 增加了点延迟，优化提现
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -285,23 +286,33 @@ async function all() {
         if (!cookie_is_live) {
             continue;
         }
+            await $.wait(1000)
         //await jinbi_record() //收益记录
         if (CZ >= 10) {
             await help_index() //助力活动
+            await $.wait(1000)
             await home() //首页信息
             await zhuan_index() //任务列表
+            await $.wait(1000)
             await pophongbaoyu() //红包雨
+            await $.wait(1000)
             await dk_info() //打卡
+            await $.wait(1000)
             await water_info() //喝水
+            await $.wait(1000)
             await sleep_info() //睡觉
             await ggk() //刮刮卡
             await $.wait(8000)
             await lucky() //转盘抽奖
             await $.wait(1000)
             await lucky() //转盘抽奖
+            await $.wait(1000)
             await news() //资讯赚
+            await $.wait(1000)
             await lotteryindex() //抽手机
+            await $.wait(1000)
             await cy_info() //答题
+            await $.wait(1000)
             await tixian_html() //提现
         }
 
@@ -1794,10 +1805,7 @@ function tixian_html(timeout = 0) {
                     if (logs) $.log(`${O}, 提现页🚩: ${data}`);
                     $.tixian_html = JSON.parse(data);
                     if ($.tixian_html.tixian_html) {
-                        jine1 = $.tixian_html.tixian_html.find(item => item.jine === '0.3');
-                        jine2 = $.tixian_html.tixian_html.find(item => item.jine === '1');
-                        jine3 = $.tixian_html.tixian_html.find(item => item.jine === '10');
-                        jine4 = $.tixian_html.tixian_html.find(item => item.jine === '20');
+                        
                         jine5 = $.tixian_html.tixian_html.find(item => item.jine === '30');
                         jine6 = $.tixian_html.tixian_html.find(item => item.jine === '100');
                         jine7 = $.tixian_html.tixian_html.find(item => item.jine === '200');
@@ -1809,9 +1817,10 @@ function tixian_html(timeout = 0) {
                             console.log(`提现查询：今日已提现\n`);
                             $.message += `【提现查询】：今日已提现\n`;
                         }
-                        console.log(`提现签到：已签到${$.tixian_html.tixian_sign_day}天\n提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine2.jine}元：需要${jine2.cond}张券\n${jine3.jine}元：需要${jine3.cond}张券\n${jine4.jine}元：需要${jine4.cond}张券\n${jine5.jine}元：需要${jine5.cond}张券\n`);
-                        $.message += `【提现签到】：已签到${$.tixian_html.tixian_sign_day}天\n【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine2.jine}元】：需要${jine2.cond}张券\n【${jine3.jine}元】：需要${jine3.cond}张券\n【${jine4.jine}元】：需要${jine4.cond}张券\n【${jine5.jine}元】：需要${jine5.cond}张券\n`;
-
+                        if (jine3&&jine3=4&&jine5) {
+                        console.log(`提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine5.jine}元：需要${jine5.cond}张券\n`);
+                        $.message += `【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine5.jine}元】：需要${jine5.cond}张券\n`;
+    }
                         if (jine6.fenshu_tixian_tip) {
 
                             fenshu6 = jine6.fenshu_tixian_tip.split('今日剩余')[1].split('份')[0]
@@ -1827,18 +1836,7 @@ function tixian_html(timeout = 0) {
 
                         if (!day_tixian_tip && ($.user.wx_username != "" || $.user.is_weixin == 1)) {
 
-                            if (CASH == 0.3 && $.user.money >= CASH && (jine1.cond == 0 || $.tixian_html.tixian_sign_day >= 3)) {
-                                await tixian() //提现
-                            }
-                            if (CASH == 1 && $.tixian_html.tixian_coupon >= 3 && $.user.money >= CASH) {
-                                await tixian() //提现
-                            }
-                            if (CASH == 10 && $.tixian_html.tixian_coupon >= 15 && $.user.money >= CASH) {
-                                await tixian() //提现
-                            }
-                            if (CASH == 20 && $.tixian_html.tixian_coupon >= 20 && $.user.money >= CASH) {
-                                await tixian() //提现
-                            }
+                            
                             if (CASH == 30 && $.tixian_html.tixian_coupon >= 25 && $.user.money >= CASH) {
                                 await tixian() //提现
                             }
@@ -1849,17 +1847,9 @@ function tixian_html(timeout = 0) {
                                     CASH = 200
                                 } else if ($.user.money >= 100&&fenshu6>=1) {
                                     CASH = 100
-                                } else if ($.user.money > 30 && $.tixian_html.tixian_coupon >= 25) {
+                                } else if ($.user.money > 30  && jine5&& $.tixian_html.tixian_coupon >= 25) {
                                     CASH = 30
-                                } else if ($.user.money > 20 && $.tixian_html.tixian_coupon >= 20) {
-                                    CASH = 20
-                                } else if ($.user.money > 10 && $.tixian_html.tixian_coupon >= 15) {
-                                    CASH = 10
-                                } else if ($.user.money > 1 && $.tixian_html.tixian_coupon >= 3) {
-                                    CASH = 1
-                                } else if ($.user.money > 0.3 && (jine1.cond == 0 || $.tixian_html.tixian_sign_day >= 3)) {
-                                    CASH = 0.3
-                                }
+                                } 
                                 if (CASH != 888) {
                                     await tixian() //提现
                                 }
