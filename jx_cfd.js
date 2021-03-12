@@ -4,10 +4,9 @@
     Address: 京喜App ====>>>> 全民赚大钱
     Author: MoPoQAQ
     Created：2020/x/xx xx:xx
-    Updated: 2021/2/25 11:11
+    Updated: 2021/3/12 14:20
     Thanks:
       whyour大佬
-      TG: https://t.me/joinchat/O1WgnBbM18YjQQVFQ_D86w
       GitHub: https://github.com/whyour
       
       新用户签到问题反馈者：https://github.com/NanjolnoRing
