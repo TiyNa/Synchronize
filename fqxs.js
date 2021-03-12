@@ -12,15 +12,15 @@ boxjs：https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/ZhiYi-N.
 hostname = *.snssdk.com
 #圈x
 [rewrite local]
-luckycat/novel/v1/task/sign_in/detail? url script-request-body https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/fqxs.js
+luckycat/novel/v1/task/sign_in/* url script-request-header https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/fqxs.js
 
 
 #loon
-http-request luckycat/novel/v1/task/sign_in/detail? script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/fqxs.js, requires-body=true, timeout=10, tag=🍅番茄小说
+http-request luckycat/novel/v1/task/sign_in/* script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/fqxs.js, requires-body=true, timeout=10, tag=🍅番茄小说
 
 
 #surge
-🍅番茄小说 = type=http-request,pattern=luckycat/novel/v1/task/sign_in/detail?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/fqxs.js,script-update-interval=0
+🍅番茄小说 = type=http-request,pattern=luckycat/novel/v1/task/sign_in/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/fqxs.js,script-update-interval=0
 
 */
 
@@ -216,7 +216,6 @@ async function sign_in(){
 }
 //read
 async function read(){
-$.log(no)
  return new Promise((resolve) => {
     let read_url = {
    	url: `https://${host}/luckycat/novel/v1/task/done/daily_read_${no}m?${fqxsurl}`,
@@ -236,8 +235,8 @@ $.log(no)
         const result = JSON.parse(data)
         if(logs)$.log(data)
         if(result.err_no == 0){
-        console.log(result.err_tips+'获得'+result.data.amount+'🍅\n') 
-        message += result.err_tips+'获得'+result.data.amount+'🍅'
+        console.log(`第${no}时段阅读`+result.err_tips+'获得'+result.data.amount+'🍅\n') 
+        message += `第${no}时段阅读`+ result.err_tips+'获得'+result.data.amount+'🍅\n'
         }else{
         console.log('阅读任务：'+result.err_tips)
         message += '阅读任务：'+result.err_tips+'\n'
