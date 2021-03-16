@@ -16,8 +16,6 @@
 
 #粉丝互动
 3 10 * * *  node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 2>&1
-#美丽美容院
-0 0,9,13,20 * * *  node /scripts/jd_mlyjy.js >> /scripts/logs/jd_mlyjy.log 2>&1
 #百变大咖秀
 10 10,11 * * 2-5  node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1
 #国际盲盒
@@ -26,6 +24,9 @@
 3 20 * * *  node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
 #京东会员-摇京豆
 3 10 1 * *  node /scripts/jd_shakeBean.js >> /scripts/logs/jd_shakeBean.log 2>&1
+# 京东小魔方
+10 10 16-18 * *  node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
+
 #京东超市-大转盘
 3 10 * * *  node /scripts/z_marketLottery.js >> /scripts/logs/z_marketLottery.log 2>&1
 #超级品类日
@@ -34,6 +35,10 @@
 15 10 10-31 3 *  node /scripts/z_unionPoster.js >> /scripts/logs/z_unionPoster.log 2>&1
 #京东众筹-众筹许愿池
 10 10,15 13-20 3 *  node /scripts/z_wish.js >> /scripts/logs/z_wish.log 2>&1
+#联想集卡活动
+12 15 15-29 3 *  node /scripts/z_lenovo.js >> /scripts/logs/z_lenovo.log 2>&1
+#母婴-跳一跳
+5 8,14,20 17-25 3 *  node /scripts/z_mother_jump.js >> /scripts/logs/z_mother_jump.log 2>&1
 
 
 #京喜财富岛兑换提醒
