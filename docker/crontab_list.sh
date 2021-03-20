@@ -27,7 +27,7 @@
 # 京东小魔方
 10 10 16-18 * *  node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
 #直播间抽奖
-10 10 * * *  node /scripts/jd_live_lottery_social.js >> /scripts/logs/jd_live_lottery_social.log
+10 22 * * *  node /scripts/jd_live_lottery_social.js >> /scripts/logs/jd_live_lottery_social.log
 
 
 
