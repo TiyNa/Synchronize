@@ -26,6 +26,12 @@
 3 10 1 * *  node /scripts/jd_shakeBean.js >> /scripts/logs/jd_shakeBean.log 2>&1
 # 京东小魔方
 10 10 16-18 * *  node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
+#直播间抽奖
+10 10 * * *  node /scripts/jd_live_lottery_social.js >> /scripts/logs/jd_live_lottery_social.log
+
+
+
+
 
 #京东超市-大转盘
 3 10 * * *  node /scripts/z_marketLottery.js >> /scripts/logs/z_marketLottery.log 2>&1
