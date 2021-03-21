@@ -22,8 +22,6 @@
 10 13 23-28,1 2-3 *  node /scripts/jd_gjmh.js >> /scripts/logs/jd_gjmh.log 2>&1
 #摇一摇
 3 20 * * *  node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
-#京东会员-摇京豆
-3 10 1 * *  node /scripts/jd_shakeBean.js >> /scripts/logs/jd_shakeBean.log 2>&1
 # 京东小魔方
 10 10 16-18 * *  node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
 #直播间抽奖
