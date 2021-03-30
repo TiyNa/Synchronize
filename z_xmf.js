@@ -5,18 +5,18 @@
 不定时京豆活动
 新手写脚本，难免有bug，能用且用。
 
-更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/z_xmf.js
+更新地址：https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_xmf.js
 ============Quantumultx===============
 [task_local]
 #京东小魔方
-10 10 25-27 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_xmf.js, tag=京东小魔方,  enabled=true
+10 10 25-27 3 * https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_xmf.js, tag=京东小魔方,  enabled=true
 ================Loon==============
 [Script]
-cron "10 10 25-27 3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_xmf.js,tag=京东小魔方
+cron "10 10 25-27 3 *" script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_xmf.js,tag=京东小魔方
 ===============Surge=================
-京东小魔方 = type=cron,cronexp="10 10 25-27 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_xmf.js
+京东小魔方 = type=cron,cronexp="10 10 25-27 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_xmf.js
 ============小火箭=========
-京东小魔方 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_xmf.js, cronexpr="10 10 25-27 3 *", timeout=3600, enable=true
+京东小魔方 = type=cron,script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_xmf.js, cronexpr="10 10 25-27 3 *", timeout=3600, enable=true
 */
 const $ = new Env('京东小魔方');
 const notify = $.isNode() ? require('./sendNotify') : '';
