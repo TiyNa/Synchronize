@@ -16,8 +16,6 @@
 
 #粉丝互动
 3 10 * * *  node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 2>&1
-#百变大咖秀
-10 10,11 * * 2-5  node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1
 #国际盲盒
 10 13 23-28,1 2-3 *  node /scripts/jd_gjmh.js >> /scripts/logs/jd_gjmh.log 2>&1
 #摇一摇
