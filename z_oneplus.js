@@ -11,20 +11,20 @@
 助力活动链接： https://h5.m.jd.com/babelDiy/Zeus/4ZK4ZpvoSreRB92RRo8bpJAQNoTq/index.html
 参数 helpAuthor = false
 
-更新地址：https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_oneplus.js
+更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/z_oneplus.js
 已支持IOS双京东账号, Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #一加盲盒
-11 12 17-30 3 * https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_oneplus.js, tag=一加盲盒, enabled=true
+11 12 17-30 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_oneplus.js, tag=一加盲盒, enabled=true
 ================Loon==============
 [Script]
-cron "11 12 17-30 3 *" script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_oneplus.js, tag=一加盲盒
+cron "11 12 17-30 3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_oneplus.js, tag=一加盲盒
 ===============Surge=================
-一加盲盒 = type=cron,cronexp="11 12 17-30 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_oneplus.js
+一加盲盒 = type=cron,cronexp="11 12 17-30 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_oneplus.js
 ============小火箭=========
-一加盲盒 = type=cron,script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_oneplus.js, cronexpr="11 12 17-30 3 *", timeout=3600, enable=true
+一加盲盒 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_oneplus.js, cronexpr="11 12 17-30 3 *", timeout=3600, enable=true
  */
 const $ = new Env('一加盲盒');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';

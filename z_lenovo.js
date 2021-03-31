@@ -11,20 +11,20 @@
 助力活动链接： https://h5.m.jd.com/babelDiy/Zeus/4ZK4ZpvoSreRB92RRo8bpJAQNoTq/index.html
 参数 helpAuthor = false
 
-更新地址：https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_lenovo.js
+更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/z_lenovo.js
 已支持IOS双京东账号, Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #联想集卡活动
-12 15 15-29 3 * https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_lenovo.js, tag=联想集卡活动, enabled=true
+12 15 15-29 3 * https://raw.githubusercontent.com/i-chenzhe/qx/main/z_lenovo.js, tag=联想集卡活动, enabled=true
 ================Loon==============
 [Script]
-cron "12 15 15-29 3 *" script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_lenovo.js, tag=联想集卡活动
+cron "12 15 15-29 3 *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_lenovo.js, tag=联想集卡活动
 ===============Surge=================
-联想集卡活动 = type=cron,cronexp="12 15 15-29 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_lenovo.js
+联想集卡活动 = type=cron,cronexp="12 15 15-29 3 *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_lenovo.js
 ============小火箭=========
-联想集卡活动 = type=cron,script-path=https://raw.githubusercontent.com/monk-coder/dust/dust/i-chenzhe/z_lenovo.js, cronexpr="12 15 15-29 3 *", timeout=3600, enable=true
+联想集卡活动 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/z_lenovo.js, cronexpr="12 15 15-29 3 *", timeout=3600, enable=true
  */
 const $ = new Env('联想集卡活动');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
