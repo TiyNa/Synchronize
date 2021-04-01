@@ -14,12 +14,7 @@
 
 
 
-#粉丝互动
-3 10 * * *  node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 2>&1
-#国际盲盒
-10 13 23-28,1 2-3 *  node /scripts/jd_gjmh.js >> /scripts/logs/jd_gjmh.log 2>&1
-#摇一摇
-3 20 * * *  node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
+
 #直播间抽奖
 10 20 * * *  node /scripts/jd_live_lottery_social.js >> /scripts/logs/jd_live_lottery_social.log
 
